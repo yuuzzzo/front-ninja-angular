@@ -1,0 +1,151 @@
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at center, rgba(38, 38, 38, 0.7) 0%, rgba(18, 18, 18, 0.95) 100%),
+    url('/fundo_anime_platform.jpg') center/cover no-repeat fixed;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title-header-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.title-header-group h2 {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+.header-logo {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-card {
+  background-color: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 15px rgba(201, 164, 76, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  color: #a3a3a3;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.form-group input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #3d3d3d;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.form-group input::placeholder {
+  color: #666666;
+}
+
+.form-group input:focus {
+  border-color: #c9a44c;
+  background-color: rgba(201, 164, 76, 0.05);
+  box-shadow: 0 0 8px rgba(201, 164, 76, 0.3);
+}
+
+.btn-submit {
+  background-color: #c9a44c;
+  color: #0d0d0d;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #e0b85c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 164, 76, 0.4);
+}
+
+.btn-submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.field-error {
+  color: #ff5555;
+  font-size: 0.75rem;
+}
+
+.error-alert {
+  background-color: rgba(255, 85, 85, 0.15);
+  border: 1px solid #ff5555;
+  color: #ff5555;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.links-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.auth-redirect {
+  color: #888888;
+  font-size: 0.82rem;
+  text-align: center;
+  margin: 0;
+}
+
+.auth-redirect a {
+  color: #c9a44c;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auth-redirect a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}

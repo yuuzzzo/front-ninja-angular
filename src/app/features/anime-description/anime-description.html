@@ -1,0 +1,83 @@
+<div class="description-container">
+
+  @if (isLoading()) {
+  <div class="loading-wrapper fade-in">
+    <p class="loading-text">Consultando os pergaminhos secretissimos...</p>
+  </div>
+  } @else if (animes(); as data) {
+  <div class="anime-detail-card fade-in">
+
+    <div class="cover-section">
+      <img [src]="data.capeImage" [alt]="data.title" class="anime-poster" />
+      @if (data.average) {
+      <div class="score-badge">
+        ★ {{ data.average }}
+      </div>
+      }
+    </div>
+
+    <div class="info-section">
+      <h1 class="anime-title">{{ data.title }}</h1>
+
+      <div class="meta-tags">
+        @for (sub of data.subCategories; track sub) {
+        <span class="badge category-badge">{{ sub }}</span>
+        }
+        <span class="badge status-badge">
+          {{ data.statusFinished ? 'Finalizado' : 'Em Exibição' }}
+        </span>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <span class="label">Ano:</span>
+          <span class="value">{{ data.releaseDate }}</span>
+        </div>
+        <div class="tech-item">
+          <span class="label">Temporadas:</span>
+          <span class="value">{{ data.seasons }}</span>
+        </div>
+        <div class="tech-item">
+          <span class="label">Episódios:</span>
+          <span class="value">{{ data.episodes }} ({{ data.durationEp }} min)</span>
+        </div>
+        <div class="tech-item">
+          <span class="label">Estúdio:</span>
+          <span class="value">{{ data.studios?.join(', ') }}</span>
+        </div>
+      </div>
+
+      <div class="synopsis-box">
+        <h3>Sinopse</h3>
+        <p>{{ data.synopsis }}</p>
+      </div>
+
+      @if (data.opinionNinja) {
+      <div class="ninja-opinion-box">
+        <h3>🥷 Opinião do Ninja</h3>
+        <p>{{ data.opinionNinja }}</p>
+      </div>
+      }
+
+      @if (data.streamingPlatforms?.length) {
+      <div class="platforms-box">
+        <span class="label">Onde Assistir:</span>
+        <div class="platform-tags">
+          @for (platform of data.streamingPlatforms; track platform) {
+          <span class="platform-badge">{{ platform }}</span>
+          }
+        </div>
+      </div>
+      }
+
+      <div class="btn-back">
+        <button class="btn-primary" (click)="goBack()">VOLTAR</button>
+      </div>
+
+    </div>
+  </div>
+  } @else {
+  <p class="empty-text fade-in">Pergaminho não encontrado.</p>
+  }
+
+</div>

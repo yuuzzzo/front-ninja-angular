@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #121212;
+  /* Garante fundo escuro em toda a área */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================================
+   BIBLIOTECA DE ANIMAÇÕES GLOBAIS (SMOOTH & CLEAN)
+   =================================================== */
+
+/* 1. Transição Suave de Entrada para Telas (Login, Registro, Containers) */
+.page-fade-in {
+  animation: smoothFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Animação de Entrada em Escala para Botões e Cards de Categoria */
+.card-pop-in {
+  opacity: 0;
+  animation: smoothPopIn 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Keyframes */
+@keyframes smoothFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes smoothPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

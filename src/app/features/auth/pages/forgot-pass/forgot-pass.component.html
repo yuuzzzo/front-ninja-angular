@@ -1,0 +1,32 @@
+<div class="login-container">
+  <form [formGroup]="forgotPassForm" (ngSubmit)="onSubmit()" class="login-card page-fade-in">
+    <h2>Solicitação de Troca de Senha</h2>
+
+    <!-- Exibe mensagem de erro da API se existir -->
+    <div *ngIf="errorMessage" class="error-alert">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Campo Email -->
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" placeholder="seu@email.com" />
+      <span *ngIf="forgotPassForm.get('email')?.touched && forgotPassForm.get('email')?.invalid" class="field-error">
+        Insira um e-mail válido.
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="forgotPassForm.invalid" class="btn-submit">
+      Enviar e-mail
+    </button>
+
+    <div class="links-group">
+      <p class="auth-redirect">
+        Lembrou a senha? <a routerLink="/login">Voltar ao Login</a>
+      </p>
+      <p class="auth-redirect">
+        Não tem uma conta? <a routerLink="/register">Cadastre-se</a>
+      </p>
+    </div>
+  </form>
+</div>

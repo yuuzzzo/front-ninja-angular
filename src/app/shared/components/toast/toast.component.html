@@ -1,0 +1,6 @@
+<div *ngIf="notificationService.toast() as data" class="toast-container" [ngClass]="data.type">
+  <div class="toast-content">
+    <span>{{ data.message }}</span>
+    <button class="close-btn" (click)="notificationService.clear()">✕</button>
+  </div>
+</div>

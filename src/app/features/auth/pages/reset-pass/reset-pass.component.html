@@ -1,0 +1,25 @@
+<div class="login-container">
+  <form [formGroup]="resetPassForm" (ngSubmit)="onSubmit()" class="login-card page-fade-in">
+    <h2>Reset de Senha</h2>
+
+    <div *ngIf="errorMessage" class="error-alert">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-group">
+      <label for="newPassword">Nova Senha</label>
+      <input id="newPassword" type="password" formControlName="newPassword" placeholder="••••••••" />
+      <span *ngIf="resetPassForm.get('newPassword')?.touched && resetPassForm.get('newPassword')?.invalid" class="field-error">
+        A senha deve ter no mínimo 6 caracteres.
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="resetPassForm.invalid" class="btn-submit">
+      Resetar senha
+    </button>
+
+    <p class="auth-redirect">
+      Senha alterada? <a routerLink="/login">Ir para o Login</a>
+    </p>
+  </form>
+</div>

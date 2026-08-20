@@ -1,0 +1,82 @@
+<div class="page-layout" [class.sidebar-closed]="isSidebarClosed()">
+  <aside class="sidebar">
+    <h3 class="sidebar-title">Gêneros</h3>
+    <nav class="categories-nav">
+      @for (cat of categories; track cat.id) {
+        <a
+          [routerLink]="['/animes/category', cat.id]"
+          routerLinkActive="active-glow"
+          class="nav-item">
+          <span class="nav-icon">{{ cat.icon }}</span>
+          <span class="nav-text">{{ cat.name }}</span>
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="catalog-container">
+
+    <header class="category-header fade-in-top">
+      <div class="header-title-wrapper">
+        <button class="btn-back" (click)="goBack()" title="Voltar para a página anterior">
+          <span class="icon">‹</span> Voltar
+        </button>
+
+        <button class="toggle-sidebar-btn" (click)="toggleSidebar()" title="Alternar Menu">
+          ☰
+        </button>
+
+        <h1 class="category-title">
+          <span>{{ currentCategory().icon }}</span> {{ currentCategory().name }}
+        </h1>
+        <span class="count-badge">
+          {{ filteredAnimes().length }} {{ filteredAnimes().length === 1 ? 'anime' : 'animes' }}
+        </span>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+          placeholder="Pesquisar anime..."
+        />
+      </div>
+    </header>
+
+    @if (isLoading()) {
+      <div class="loading-wrapper fade-in">
+        <p class="loading-text">Carregando catálogo ninja...</p>
+      </div>
+    } @else {
+      <div class="anime-grid">
+        @for (anime of filteredAnimes(); track anime._id; let i = $index) {
+          <div class="anime-card bounce-in" [style.animation-delay]="i * 0.05 + 's'">
+
+            <div class="cover-wrapper">
+              <img [src]="anime.capeImage" [alt]="anime.title" class="anime-cover" />
+              @if (anime.average) {
+                <div class="score-badge">
+                  ★ {{ anime.average }}
+                </div>
+              }
+            </div>
+
+            <div class="anime-body">
+              <h4 class="anime-title">{{ anime.title }}</h4>
+              <p class="anime-description">{{ anime.synopsis }}</p>
+
+              <button class="btn-scroll" (click)='showDescriptionAnime(anime._id)'>VER PERGAMINHO</button>
+            </div>
+
+          </div>
+        } @empty {
+          <p class="empty-text fade-in">
+            {{ searchTerm() ? 'Nenhum anime encontrado para "' + searchTerm() + '".' : 'Nenhum anime encontrado para esta categoria.' }}
+          </p>
+        }
+      </div>
+    }
+  </main>
+</div>

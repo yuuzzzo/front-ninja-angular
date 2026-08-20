@@ -1,0 +1,41 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-card page-fade-in">
+    <div class="title-header-group">
+      <h2>Login Ninja</h2>
+      <img src="/ninjinha_logo_form.png" alt="Ninja Logo" class="header-logo" />
+    </div>
+
+    <div *ngIf="errorMessage" class="error-alert">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" placeholder="seu@email.com" />
+      <span *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="field-error">
+        Insira um e-mail válido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" placeholder="••••••••" />
+      <span *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="field-error">
+        A senha deve ter no mínimo 6 caracteres.
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid" class="btn-submit">
+      Entrar
+    </button>
+
+    <div class="links-group">
+      <p class="auth-redirect">
+        Não tem uma conta? <a routerLink="/register">Cadastre-se</a>
+      </p>
+      <p class="auth-redirect">
+        Esqueceu a senha genin? <a routerLink="/forgot-pass">Esqueci a senha</a>
+      </p>
+    </div>
+  </form>
+</div>

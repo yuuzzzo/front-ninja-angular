@@ -1,0 +1,114 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes katanaSpin {
+  0% {
+    transform: rotate(-20deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(20deg) scale(1.12);
+  }
+
+  100% {
+    transform: rotate(-20deg) scale(1);
+  }
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+.footer {
+  width: 100%;
+  padding: 32px 24px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+  animation: fadeUp 0.5s ease-out 0.2s both;
+}
+
+/* ── Linha decorativa dourada ───────────────────────────────────────── */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c, transparent);
+  margin-bottom: 4px;
+}
+
+/* ── Linha superior com katana + texto ─────────────────────────────── */
+.mainLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.katana {
+  font-size: 0.95rem;
+  animation: katanaSpin 4s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 0 6px rgba(201, 168, 76, 0.3));
+}
+
+.rights {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #383838;
+  transition: color 0.3s ease;
+}
+
+.footer:hover .rights {
+  color: #505050;
+}
+
+/* Destaque no nome do autor */
+.author {
+  color: #c9a84c;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+/* ── Linha inferior — selo do dojo ─────────────────────────────────── */
+.seal {
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #252525;
+  transition: color 0.3s ease;
+}
+
+.footer:hover .seal {
+  color: #303030;
+}
+
+/* ── Responsividade ─────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .footer {
+    padding: 24px 16px 22px;
+    gap: 10px;
+  }
+
+  .rights {
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+  }
+
+  .seal {
+    font-size: 0.54rem;
+    letter-spacing: 2px;
+  }
+}

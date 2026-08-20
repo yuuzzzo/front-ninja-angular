@@ -1,0 +1,41 @@
+<div class="login-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-card page-fade-in">
+    <h2>Criar Conta Ninja</h2>
+
+    <div *ngIf="errorMessage" class="error-alert">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-group">
+      <label for="user">Nome de Usuário</label>
+      <input id="user" type="text" formControlName="user" placeholder="Seu nickname" />
+      <span *ngIf="registerForm.get('user')?.touched && registerForm.get('user')?.invalid" class="field-error">
+        O nome de usuário deve ter no mínimo 3 caracteres.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" placeholder="seu@email.com" />
+      <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="field-error">
+        Insira um e-mail válido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" placeholder="••••••••" />
+      <span *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="field-error">
+        A senha deve ter no mínimo 6 caracteres.
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid" class="btn-submit">
+      Cadastrar
+    </button>
+
+    <p class="auth-redirect">
+      Já possui uma conta? <a routerLink="/login">Entrar</a>
+    </p>
+  </form>
+</div>
