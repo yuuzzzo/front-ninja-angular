@@ -1,0 +1,245 @@
+.my-lists-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+  /* Animação suave de entrada do container geral */
+  animation: fadeInContainer 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  animation: slideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tab-btn {
+  background-color: #1a1a1a;
+  color: #ccc;
+  border: 1px solid #333;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tab-btn:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background-color: #e5a93c;
+  color: #000;
+  border-color: #e5a93c;
+  box-shadow: 0 4px 15px rgba(229, 169, 60, 0.3);
+  transform: scale(1.03);
+}
+
+.animes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  /* Animação para a troca de abas */
+  animation: fadeInGrid 0.4s ease-out forwards;
+}
+
+.anime-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #2a2a2a;
+  opacity: 0;
+  /* Aparição suave dos cards com micro-interação no hover */
+  animation: cardScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease;
+}
+
+/* Efeito Stagger: faz cada card surgir sequencialmente */
+.anime-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.anime-card:nth-child(2) {
+  animation-delay: 0.10s;
+}
+
+.anime-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.anime-card:nth-child(4) {
+  animation-delay: 0.20s;
+}
+
+.anime-card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.anime-card:nth-child(6) {
+  animation-delay: 0.30s;
+}
+
+.anime-card:nth-child(7) {
+  animation-delay: 0.35s;
+}
+
+.anime-card:nth-child(8) {
+  animation-delay: 0.40s;
+}
+
+.anime-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #e5a93c;
+  box-shadow: 0 10px 25px rgba(229, 169, 60, 0.25);
+}
+
+.poster-box {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.anime-card:hover .poster-img {
+  transform: scale(1.08);
+  /* Zoom sutil na imagem ao passar o mouse */
+}
+
+.score-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  color: #e5a93c;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 1px solid rgba(229, 169, 60, 0.3);
+}
+
+.card-info {
+  padding: 0.8rem;
+}
+
+.card-info h3 {
+  font-size: 0.95rem;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.year {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.loading-box,
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #aaa;
+  font-size: 1.1rem;
+  animation: fadeInContainer 0.4s ease-out forwards;
+}
+
+/* Botão Voltar Ninja Glass */
+.btn-back {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-back .icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #c9a44c;
+}
+
+.btn-back:hover {
+  background: rgba(201, 164, 76, 0.15);
+  border-color: #c9a44c;
+  color: #c9a44c;
+  box-shadow: 0 0 10px rgba(201, 164, 76, 0.3);
+  transform: translateX(-2px);
+}
+
+/* --- KEYFRAMES DE ANIMAÇÃO --- */
+
+@keyframes fadeInContainer {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardScaleUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { Observable, tap } from "rxjs";
 import { UsersLogin, AuthResponse, UsersRegister, UserForgotPass, UserResetPass } from "../../shared/models/auth.model";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { UsersLogin, AuthResponse, UsersRegister, UserForgotPass, UserResetPass 
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly API_URL = 'http://localhost:3000';
+  private readonly router = inject(Router);
 
   isAuthenticated = signal<boolean>(false);
 
@@ -21,6 +23,7 @@ export class AuthService {
   login(credentials: UsersLogin): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/auth/login`, credentials).pipe(
       tap((response) => {
+        console.log(response)
         if (response.access_token) {
           localStorage.setItem('access_token', response.access_token);
           this.isAuthenticated.set(true);
@@ -43,6 +46,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
     this.isAuthenticated.set(false);
   }
 }

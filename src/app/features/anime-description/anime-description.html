@@ -7,15 +7,55 @@
   } @else if (animes(); as data) {
   <div class="anime-detail-card fade-in">
 
+    <!-- COLUNA ESQUERDA: CAPA + LISTA NINJA -->
     <div class="cover-section">
-      <img [src]="data.capeImage" [alt]="data.title" class="anime-poster" />
-      @if (data.average) {
-      <div class="score-badge">
-        ★ {{ data.average }}
+      <div class="poster-wrapper">
+        <img [src]="data.capeImage" [alt]="data.title" class="anime-poster" />
+        @if (data.average) {
+        <div class="score-badge">
+          ★ {{ data.average }}
+        </div>
+        }
       </div>
-      }
+
+      <!-- BOTÕES DA LISTA NINJA (ABAIXO DA CAPA) -->
+      <div class="ninja-list-card">
+        <h3>MINHA LISTA NINJA</h3>
+        <p class="subtitle">Clique para adicionar ou remover este anime de alguma de suas listas.</p>
+
+        <div class="list-buttons-grid">
+          <button
+            class="btn-list"
+            [class.active]="userLists()['WANT_TO_WATCH']"
+            (click)="toggleAnimeList('WANT_TO_WATCH')">
+            QUERO ASSISTIR
+          </button>
+
+          <button
+            class="btn-list"
+            [class.active]="userLists()['WATCHED']"
+            (click)="toggleAnimeList('WATCHED')">
+            JÁ ASSISTI
+          </button>
+
+          <button
+            class="btn-list"
+            [class.active]="userLists()['LIKED']"
+            (click)="toggleAnimeList('LIKED')">
+            GOSTEI DESSE ANIME
+          </button>
+
+          <button
+            class="btn-list"
+            [class.active]="userLists()['DISLIKED']"
+            (click)="toggleAnimeList('DISLIKED')">
+            NÃO GOSTEI DESSE ANIME
+          </button>
+        </div>
+      </div>
     </div>
 
+    <!-- COLUNA DIREITA: INFORMAÇÕES DETALHADAS -->
     <div class="info-section">
       <h1 class="anime-title">{{ data.title }}</h1>
 
@@ -24,7 +64,7 @@
         <span class="badge category-badge">{{ sub }}</span>
         }
         <span class="badge status-badge">
-          {{ data.statusFinished ? 'Finalizado' : 'Em Exibição' }}
+          Lançou tudo? {{ data.statusFinished ? 'Sim Finalizado' : 'Lançando episódios' }}
         </span>
       </div>
 
@@ -54,7 +94,7 @@
 
       @if (data.opinionNinja) {
       <div class="ninja-opinion-box">
-        <h3>🥷 Opinião do Ninja</h3>
+        <h3>📜 Opinião do Ninja</h3>
         <p>{{ data.opinionNinja }}</p>
       </div>
       }

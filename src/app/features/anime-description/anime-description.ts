@@ -4,6 +4,7 @@ import { Animes } from '../../shared/models/animes.model';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserAnimeListService, AnimeListType } from '../animes/service/user-anime-list.service';
 
 @Component({
   selector: 'app-anime-description',
@@ -16,7 +17,15 @@ export class AnimeDescriptionComponent implements OnInit {
   private readonly animesService = inject(AnimesService);
   private readonly route = inject(ActivatedRoute);
   private readonly location = inject(Location);
+  private readonly userListService = inject(UserAnimeListService);
   private routeSub!: Subscription;
+
+  userLists = signal<Record<AnimeListType, boolean>>({
+    'WANT_TO_WATCH': false,
+    'WATCHED': false,
+    'LIKED': false,
+    'DISLIKED': false,
+  });
 
   isLoading = signal<boolean>(false);
   animes = signal<Animes | null>(null);
@@ -28,6 +37,7 @@ export class AnimeDescriptionComponent implements OnInit {
       if (id) {
         this.currentId.set(id);
         this.loadAnime(id);
+        this.loadUserListsStatus(id);
       }
     })
   }
@@ -47,6 +57,42 @@ export class AnimeDescriptionComponent implements OnInit {
         this.isLoading.set(false);
       }
     })
+  }
+
+  loadUserListsStatus(animeId: string): void {
+    const types: AnimeListType[] = ['WANT_TO_WATCH', 'WATCHED', 'LIKED', 'DISLIKED'];
+
+    types.forEach((type) => {
+      this.userListService.getListByType(type).subscribe({
+        next: (list: any[]) => {
+          const isPresent = list.some((item) => {
+            const targetId = item.animeId?._id ? item.animeId._id : item.animeId;
+            return targetId?.toString() === animeId?.toString();
+          });
+
+          this.userLists.update((prev) => ({
+            ...prev,
+            [type]: isPresent,
+          }));
+        },
+        error: (err) => console.error(`Erro ao verificar lista ${type}`, err),
+      });
+    });
+  }
+
+  toggleAnimeList(listType: AnimeListType): void {
+    const id = this.currentId();
+    if (!id) return;
+
+    this.userListService.toggleList(id, listType).subscribe({
+      next: (res) => {
+        this.userLists.update((prev) => ({
+          ...prev,
+          [listType]: res.action === 'added',
+        }));
+      },
+      error: (err) => console.error('Erro ao atualizar lista', err),
+    });
   }
 
   goBack(): void {

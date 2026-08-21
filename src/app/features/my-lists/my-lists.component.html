@@ -1,0 +1,41 @@
+<div class="my-lists-container">
+  <h1 class="page-title">📜 Meus Pergaminhos Ninja</h1>
+
+  <button class="btn-back" (click)="goBack()" title="Voltar para a página anterior">
+    <span class="icon">‹</span> Voltar
+  </button>
+  <div class="tabs-wrapper">
+    @for (tab of tabs; track tab.key) {
+    <button class="tab-btn" [class.active]="activeTab() === tab.key" (click)="selectTab(tab.key)">
+      {{ tab.label }}
+    </button>
+    }
+  </div>
+
+  @if (isLoading()) {
+  <div class="loading-box">
+    <p>Consultando os pergaminhos...</p>
+  </div>
+  } @else if (animesList().length > 0) {
+  <div class="animes-grid">
+    @for (anime of animesList(); track anime._id) {
+    <div class="anime-card" [routerLink]="['/anime/description', anime._id]">
+      <div class="poster-box">
+        <img [src]="anime.capeImage" [alt]="anime.title" class="poster-img" />
+        @if (anime.average) {
+        <span class="score-badge">★ {{ anime.average }}</span>
+        }
+      </div>
+      <div class="card-info">
+        <h3>{{ anime.title }}</h3>
+        <span class="year">{{ anime.releaseDate }}</span>
+      </div>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="empty-state">
+    <p>Nenhum anime encontrado nesta categoria.</p>
+  </div>
+  }
+</div>

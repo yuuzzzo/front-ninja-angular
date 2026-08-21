@@ -41,6 +41,11 @@ export const routes: Routes = [
   {
     path: 'categorys',
     loadComponent: () => import('./features/categorys/categorys.component').then(m => m.CategorysComponent)
+  },
+
+  {
+    path: 'my-lists',
+    loadComponent: () => import('./features/my-lists/my-lists.component').then(m => m.MyListsComponent)
   }
 
 ];

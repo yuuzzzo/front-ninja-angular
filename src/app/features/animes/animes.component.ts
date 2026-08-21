@@ -5,6 +5,7 @@ import { Animes } from '../../shared/models/animes.model';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../core/service/auth.service';
 
 interface Category {
   id: number;
@@ -24,6 +25,7 @@ export class AnimesComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly location = inject(Location);
+  private readonly authService = inject(AuthService);
   private routeSub!: Subscription;
 
   animes = signal<Animes[]>([]);
@@ -107,6 +109,10 @@ export class AnimesComponent implements OnInit, OnDestroy {
 
   showDescriptionAnime(id: string): void {
     this.router.navigate(['anime/description/', id]);
+  }
+
+  onLogout(): void {
+    this.authService.logout();
   }
 
   ngOnDestroy(): void {
