@@ -8,7 +8,7 @@ import { Animes } from "../../../shared/models/animes.model";
 })
 export class AnimesService {
   private readonly http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:3000';
+  private readonly API_URL = 'https://api.ninjaanimes.com.br';
 
   animes(categoryId?: number): Observable<any> {
     return this.http.get<Animes[]>(`${this.API_URL}/animes/category/${categoryId}`);

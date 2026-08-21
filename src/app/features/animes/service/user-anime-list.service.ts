@@ -22,7 +22,7 @@ export interface ListCounters {
 })
 export class UserAnimeListService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/user-anime-list'; // Ajuste sua URL base aqui
+  private readonly apiUrl = 'https://api.ninjaanimes.com.br/user-anime-list'; // Ajuste sua URL base aqui
 
   toggleList(animeId: string, listType: AnimeListType): Observable<ToggleListResponse> {
     return this.http.post<ToggleListResponse>(`${this.apiUrl}/toggle`, { animeId, listType });

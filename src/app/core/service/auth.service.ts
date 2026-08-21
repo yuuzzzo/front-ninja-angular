@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:3000';
+  private readonly API_URL = 'https://api.ninjaanimes.com.br';
   private readonly router = inject(Router);
 
   isAuthenticated = signal<boolean>(false);
