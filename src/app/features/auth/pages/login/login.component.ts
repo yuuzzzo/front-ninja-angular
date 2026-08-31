@@ -17,6 +17,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
 
   errorMessage: string = '';
+  textButton: string = 'Entrar';
 
   loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -28,6 +29,8 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
+
+    this.textButton = 'Validando...';
 
     const credentials = this.loginForm.value;
 

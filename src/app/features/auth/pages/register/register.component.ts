@@ -17,6 +17,7 @@ export class RegisterComponent {
   private readonly router = inject(Router);
 
   errorMessage: string = '';
+  textButton: string = 'Cadastrar';
 
   registerForm: FormGroup = this.formBuild.group({
     user: ['', [Validators.required, Validators.minLength(3)]],
@@ -29,6 +30,8 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
+
+      this.textButton = 'Carregando...'
 
     const userData = this.registerForm.value;
 
