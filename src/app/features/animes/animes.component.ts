@@ -27,13 +27,15 @@ export class AnimesComponent implements OnInit, OnDestroy {
   private readonly location = inject(Location);
   private readonly authService = inject(AuthService);
   private routeSub!: Subscription;
+  
 
   animes = signal<Animes[]>([]);
   isLoading = signal<boolean>(true);
   currentCategoryId = signal<number | null>(null);
   searchTerm = signal<string>('');
+  textButton: string = 'VER PERGAMINHO';
 
-  isSidebarClosed = signal<boolean>(false);
+  isSidebarClosed = signal<boolean>(true);
 
   categories: Category[] = [
     { id: 1, name: 'Romance', icon: '💖' },
@@ -108,6 +110,7 @@ export class AnimesComponent implements OnInit, OnDestroy {
   }
 
   showDescriptionAnime(id: string): void {
+    this.textButton = 'Carregando pergaminho...'
     this.router.navigate(['anime/description/', id]);
   }
 

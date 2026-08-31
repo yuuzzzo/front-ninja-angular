@@ -31,7 +31,7 @@
         </button>
 
         <button class="toggle-sidebar-btn" (click)="toggleSidebar()" title="Alternar Menu">
-          ☰
+          ☰ Menu 
         </button>
 
         <h1 class="category-title">
@@ -75,7 +75,9 @@
               <h4 class="anime-title">{{ anime.title }}</h4>
               <p class="anime-description">{{ anime.synopsis }}</p>
 
-              <button class="btn-scroll" (click)='showDescriptionAnime(anime._id)'>VER PERGAMINHO</button>
+              <button class="btn-scroll" (click)='showDescriptionAnime(anime._id)'>
+                {{ textButton }}
+              </button>
             </div>
 
           </div>
